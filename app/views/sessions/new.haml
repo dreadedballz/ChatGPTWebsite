@@ -1,13 +1,19 @@
-%h2 Login
+.body
+  .header
+  .container
+    %h2
+      Login
 
-= form_tag sessions_path do
-  %div
-    %label Email
-    = email_field_tag :session, :email
+    = form_for(:session, url: 'sessions#create') do |f|
+      .form-group
+        = f.label :email
+        = f.email_field :email, class: 'form-control'
 
-  %div
-    %label Password
-    = password_field_tag :session, :password
+      .form-group
+        = f.label :password
+        = f.password_field :password, class: 'form-control'
 
-  %div
-    = submit_tag "Log In"
+      .form-group
+        = f.submit 'Login', class: 'btn btn-primary', onclick: "location.href='#{surprise_path}'"
+
+      %a{href: new_user_path, class: "button"} Registrieren
